@@ -4,7 +4,7 @@ var prefix = 'LH/'
 
 bot.on("ready", () => {
     console.log(`Logged in as ${bot.user.tag}!`);
-    bot.user.setActivity("Si tu lis ce message, tu es un vrai.", {type: "PLAYING"})
+    bot.user.setActivity(`La Loterie 💎 | ${bot.users.size} users`, {type: "PLAYING"})
    console.log('')
    console.log('')
    console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -19,6 +19,8 @@ bot.on("ready", () => {
    console.log(`servers : [ " ${bot.guilds.size} " ]`);
    console.log(`Users : [ " ${bot.users.size} " ]`);
    console.log(`channels : [ " ${bot.channels.size} " ]`);
+   console.log(`Lien d'invitation : [ " https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&permissions=8&scope=bot " ]`)
+   console.log(" ")
    console.log('╚[════════════════════════════════════]╝')
    console.log('')
    console.log('╔[════════════]╗')
@@ -29,6 +31,17 @@ bot.on("ready", () => {
 })
 
 bot.on("message", message => {
+  if(message.content.includes(prefix + 'helpcasinoo')){
+    let helpcasinoo = new Discord.RichEmbed()
+    .setColor("RANDOM")
+    .addField("Casino :moneybag: ","\nVous commencez avec 500 :moneybag: ")
+    .addField("Pour gagner de l'argent.","\n!work Permet de travailler et de gagner entre 100 et 500 :money\n!slut Permet de te prostituer pour gagner de l'argent entre 50 et 1000 :moneybag: n!crime Permet de faire un crime pour gagner entre 500 et 1500 :moneybag: !rob Pour volé un autre joueur avec du liquide\n\nEx: !rob [@ pseudo]\n")  
+    .addField("Gérer mon Argent.","\n!bal Voir ses :moneybag: !with Retire des :moneybag: de votre Banque.\n!dep Ajoute des :moneybag: à votre Banque.\n\nex: !dep all <Tout vos :moneybag: on maintenant à la banque>\n")
+    .addField("Jeux du Casino.","\n!sm [Somme parier] Slot-Machine.\n!roulette [Somme parier] [Red/Black] : Mise un gain sur le rouge ou le noir.\n!bj [Somme parier] Blackjack, Pour continuer ou rester sur sa carte [Hit / Stand] (Dur a apprendre mais très rentable)\n!rr Roulette Russe à jouer entre amis\n!cf [Somme parier] Faire combattre votre Chicken\n\nChicken à acheter dans le !shop\n")
+    .addField("Shop.","\n!shop Affiche le shop\n!buy <Nom de l'item> Achete un item!use <Nom de l'item> \nUtilise l'item\n\nex: \n\n!buy Nitro / !use Nitro !top Affiche le top des joueurs les plus riches.Doubles comptes = Ban @here Si Difficulté à comprendre go contacter un staff. :smiley:")
+    message.channel.send(helpcasinoo)
+  }
+
     let command = message.content.split(" ")[0];
     command = command.slice(prefix.length);
     let messageKick = message.content.split(" ");
@@ -72,7 +85,7 @@ bot.on("message", message => {
         var kick_embed = new Discord.RichEmbed()
             .setColor("E46525")
             .addField("[Kick]", `${member.user} a été kick par ${message.author} !`)
-            .addField("Raison :","${raison}")
+            .addField("Raison :",raison)
     
         message.channel.send(kick_embed)
     })
@@ -217,7 +230,7 @@ bot.on("message", message => {
 
 
     
-      if(message.content.startsWith("LH/info")) {
+      if(message.content.startsWith("LH/ui")) {
         var memberavatar = message.author.avatarURL
         var membername = message.author.username
            var mentionned = message.mentions.users.first();
@@ -325,27 +338,55 @@ bot.on("message", message => {
         console.log(`server info par ${message.author.tag}`)
         console.error();
     };
+    let Sere = message.guild.iconURL;
+    if(message.content === 'LH/help'){
+        var help_embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username)
+        .setTitle("Help")
+        .setColor("RANDOM")
+        .addBlankField()
+        .addField("Modération", "-----------------------------------------------------")
+        .addBlankField()
+        .addField("LH/mute", "Sert a mute")
+        .addField("LH/clear", "Sert a clear")
+        .addField("LH/ban", 'Sert a ban')
+        .addField("LH/kick", "Sert a kick")
+        .addBlankField()
+        .addField("Informations", "-----------------------------------------------------")
+        .addBlankField()
+        .addField("LH/si", "Le bot envoi des informations sur le serveur")
+        .addField("LH/ui", "Le bot vous envoi des informations sur vous ou sur la personne mentionné")
+        .addBlankField()
+        .addField("Fun", "-----------------------------------------------------")
+        .addBlankField()
+        .addField("LH/hacked [NOM DU HACK]", "Vous envoyez un hack a la personne que vous voulez (car vous êtes un grand hackeur)")
+        .addField("LH/rainbow", "Créer un bot RAINBOW :gay_pride_flag:")
+        .setThumbnail(Sere)
+        .setFooter("Et c'est tout.")
+        message.channel.send(help_embed)
+    }
     let online = message.guild.members.filter(member => member.user.presence.status !== 'offline');
     let day = message.guild.createdAt.getDate()
     let month = 1 + message.guild.createdAt.getMonth()
     let year = message.guild.createdAt.getFullYear()
-     let sicon = message.guild.iconURL;
+     let Ser = message.guild.iconURL;
      if(message.content.includes(prefix + 'si')){
     let serverembed = new Discord.RichEmbed()
-     .setAuthor(message.guild.name, sicon)
+     .setAuthor(message.guild.name, Ser)
      .setFooter(`Server Created • ${day}.${month}.${year}`)
      .setColor("RANDOM")
-     .setThumbnail(sicon)
-     .addField("**🆔 ID**", message.guild.id, true)
-     .addField("**📛 Nom**", message.guild.name, true)
-     .addField("**👑 Créateur**", message.guild.owner.user.tag, true)
-     .addField("**🌍 Region**", message.guild.region, true)
-     .addField("**💬 Channels**", message.guild.channels.size, true)
-     .addField("**👥 Membres**", message.guild.memberCount, true)
+     .setThumbnail(Ser)
+     .addField("**🆔 ID**", "**" + message.guild.id + "**", true)
+     .addField("**📛 Nom**", "**" + message.guild.name + "**", true)
+     .addField("**👑 Créateur**", "**" + message.guild.owner.user.tag + "**", true)
+     .addField("**🌍 Region**", "**" + message.guild.region + "**", true)
+      .addField('**💬 Channels **',`**${message.guild.channels.filter(m => m.type === 'text').size}**` + ' text | Voice  '+ `**${message.guild.channels.filter(m => m.type === 'voice').size}**`,true)
+     .addField("**👥 Membres**", "**" + message.guild.memberCount + "**", true)
      .addField("**👦 Humains**", message.guild.memberCount - message.guild.members.filter(m => m.user.bot).size, true)
-     .addField("**🤖 Bots**", message.guild.members.filter(m => m.user.bot).size, true)
-     .addField("**📱 Online**", online.size, true)
-     .addField("**🏆 Rôles**", message.guild.roles.size, true);
+     .addField("**🤖 Bots**", "**" + message.guild.members.filter(m => m.user.bot).size + "**", true)
+     .addField("**📱 Online**", "**" + online.size + "**", true)
+     .addField("**📅 Créer le**", `**${message.guild.createdAt.toLocaleString()}**`,true)
+     .addField("**🏆 Rôles**", "**" + message.guild.roles.size + "**", true);
      message.channel.send(serverembed);
      }
   if (message.content.startsWith(prefix + "sondage")) {
@@ -406,4 +447,4 @@ bot.on("message", message => {
       }, 2000);
 })
 
-bot.login("TOKEN")
+bot.login(process.env.TOKEN)
