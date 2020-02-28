@@ -4,7 +4,7 @@ var prefix = 'LH/'
 
 bot.on("ready", () => {
     console.log(`Logged in as ${bot.user.tag}!`);
-    bot.user.setActivity(`La Loterie 💎 | ${bot.users.size} users`, {type: "PLAYING"})
+    bot.user.setActivity(`💣 𝗛𝗟𝗜𝗦𝗜𝗢𝗡𝗦 💣 | ${bot.users.size} users`, {type: "PLAYING"})
    console.log('')
    console.log('')
    console.log('╔[═════════════════════════════════════════════════════════════════]╗')
