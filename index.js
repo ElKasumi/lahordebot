@@ -42,3 +42,5 @@ Client.on('ready', function(){
   }
   }, 1000);
 })
+
+Client.login('TOKEN')
